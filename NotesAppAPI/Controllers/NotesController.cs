@@ -4,7 +4,7 @@ using NotesAppAPI.Services;
 namespace NotesAppAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class NotesController : ControllerBase
     {
         private INotesService notesManager;
@@ -16,39 +16,39 @@ namespace NotesAppAPI.Controllers
         }
 
         [HttpGet("~/notes")]
-        public ActionResult<List<dtoNote>> GetNotes()
+        public async Task<ActionResult<List<dtoNote>>> GetNotes()
         {
-            return Ok(notesManager.GetNotes());
+            return Ok(await notesManager.GetNotes());
         }
 
         [HttpGet("~/notes/{noteId}")]
-        public ActionResult<dtoNote> GetNoteById(int noteId)
+        public async Task<ActionResult<dtoNote>> GetNoteById(int noteId)
         {
-            return Ok(notesManager.GetNoteById(noteId));
+            return Ok(await notesManager.GetNoteById(noteId));
         }
 
         [HttpPost("~/notes")]
-        public ActionResult<bool> AddNote(string description)
+        public async Task<ActionResult<bool>> AddNote(string description)
         {
-            return Ok(notesManager.AddNote(new dtoAddNote { description = description }));
+            return Ok(await notesManager.AddNote(new dtoAddNote { description = description }));
         }
 
         [HttpPut("~/notes/{noteId}")]
-        public ActionResult<bool> UpdateNote(int noteId, string description)
+        public async Task<ActionResult<bool>> UpdateNote(int noteId, string description)
         {
-            return Ok(notesManager.UpdateNote(new dtoUpdateNote { description = description, id = noteId }));
+            return Ok(await notesManager.UpdateNote(new dtoUpdateNote { description = description, id = noteId }));
         }
 
         [HttpDelete("~/notes/{noteId}")]
-        public ActionResult<bool> DeleteNote(int noteId)
+        public async Task<ActionResult<bool>> DeleteNote(int noteId)
         {
-            return Ok(notesManager.DeleteNote(noteId));
+            return Ok(await notesManager.DeleteNote(noteId));
         }
 
         [HttpPut("~/notes/{noteId}/markAsRead")]
-        public ActionResult<bool> MarkNoteAsRead(int noteId)
+        public async Task<ActionResult<bool>> MarkNoteAsRead(int noteId)
         {
-            return Ok(notesManager.MarkAsRead(noteId));
+            return Ok(await notesManager.MarkAsRead(noteId));
         }
     }
 }

@@ -5,11 +5,11 @@ namespace NotesAppAPI.Services
 {
     public interface INotesService
     {
-        public List<dtoNote> GetNotes();
-        public dtoNote? GetNoteById(int id);
-        public bool AddNote(dtoAddNote newNote);
-        public bool UpdateNote(dtoUpdateNote modifiedNote);
-        public bool DeleteNote(int id);
-        public bool MarkAsRead(int id);
+        public Task<List<dtoNote>> GetNotes();
+        public Task<dtoNote?> GetNoteById(int id);
+        public Task<bool> AddNote(dtoAddNote newNote);
+        public Task<bool> UpdateNote(dtoUpdateNote modifiedNote);
+        public Task<bool> DeleteNote(int id);
+        public Task<bool> MarkAsRead(int id);
     }
 }
