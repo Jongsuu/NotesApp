@@ -1,3 +1,4 @@
+using Npgsql;
 using NotesAppAPI.Models;
 
 namespace NotesAppAPI.Services
@@ -13,29 +14,144 @@ namespace NotesAppAPI.Services
             connectionString = configuration.GetConnectionString("NotesAppConnectionString")!;
         }
 
-        public int AddNote(dtoAddNote newNote)
+        public bool AddNote(dtoAddNote newNote)
         {
-            throw new NotImplementedException();
+            bool inserted = false;
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = string.Format("INSERT INTO notes(description, read) VALUES('{0}', false)", newNote.description);
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+                inserted = cmd.ExecuteNonQuery() == 1;
+
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return inserted;
         }
 
         public bool DeleteNote(int id)
         {
-            throw new NotImplementedException();
+            bool deleted = false;
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = string.Format("DELETE FROM notes WHERE id={0}", id);
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+                deleted = cmd.ExecuteNonQuery() == 1;
+
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return deleted;
         }
 
-        public dtoNote GetNoteById(int id)
+        public dtoNote? GetNoteById(int id)
         {
-            throw new NotImplementedException();
+            dtoNote? result = null;
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM notes WHERE id=" + id;
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result = new dtoNote
+                    {
+                        id = (int)reader["id"],
+                        description = (string)reader["description"],
+                        read = (bool)reader["read"]
+                    };
+                }
+
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return result;
         }
 
         public List<dtoNote> GetNotes()
         {
-            throw new NotImplementedException();
+            List<dtoNote> notes = new List<dtoNote>();
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM notes";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    notes.Add(new dtoNote
+                    {
+                        id = (int)reader["id"],
+                        description = (string)reader["description"],
+                        read = (bool)reader["read"]
+                    });
+                }
+
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return notes;
         }
 
-        public int UpdateNote(dtoUpdateNote modifiedNote)
+        public bool UpdateNote(dtoUpdateNote modifiedNote)
         {
-            throw new NotImplementedException();
+            bool updated = false;
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = string.Format("UPDATE notes SET read=false, description='{1}' WHERE id={0}", modifiedNote.id, modifiedNote.description);
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+                updated = cmd.ExecuteNonQuery() == 1;
+
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return updated;
+        }
+
+        public bool MarkAsRead(int id)
+        {
+            bool read = false;
+
+            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = string.Format("UPDATE notes SET read=true WHERE id={0}", id);
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+                read = cmd.ExecuteNonQuery() == 1;
+
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return read;
         }
     }
 }

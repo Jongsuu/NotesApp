@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "QEbUxAR3fFCjYEOuEDp8IRWUdhbmht2nBur9dpC3azGDdCVaRbBteDbHDtLQ1Z1OSXbdIu7wNFrJKTXOyt9yJw==",
+  "dgSpecHash": "78Xt8G9tdqXul+f5D8mKWhW+ZiD9mKu5PVQPOFGtIHEAoJW0DHg5nZoF1nKWwimj6ajvIbFgIjzej1UZkM8dZA==",
   "success": true,
   "projectFilePath": "/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/NotesAppAPI.csproj",
   "expectedPackageFiles": [
     "/home/jongsu/.nuget/packages/microsoft.aspnetcore.openapi/7.0.10/microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
     "/home/jongsu/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/jongsu/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/home/jongsu/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/jongsu/.nuget/packages/npgsql/7.0.4/npgsql.7.0.4.nupkg.sha512",
     "/home/jongsu/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/home/jongsu/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/home/jongsu/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

@@ -31,3 +31,4 @@
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/obj/Debug/net7.0/NotesAppAPI.pdb
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/obj/Debug/net7.0/NotesAppAPI.genruntimeconfig.cache
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/obj/Debug/net7.0/ref/NotesAppAPI.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Npgsql.dll
