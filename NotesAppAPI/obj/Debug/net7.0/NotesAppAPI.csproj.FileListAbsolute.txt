@@ -39,3 +39,7 @@
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Scrutor.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Swashbuckle.AspNetCore.Filters.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Swashbuckle.AspNetCore.Filters.Abstractions.dll

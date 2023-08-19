@@ -1,4 +1,5 @@
 using NotesAppAPI.Models.Response;
+using System.Security.Claims;
 
 namespace NotesAppAPI.Common
 {
@@ -18,6 +19,11 @@ namespace NotesAppAPI.Common
         public static void SetResponseOperationNotPerformedError<T>(dtoResponse<T> response)
         {
             SetResponseError<T>(response, dtoResponseMessageCodes.OPERATION_NOT_PERFORMED);
+        }
+
+        public static int GetUserId(string connectionString, HttpContext context)
+        {
+            return int.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         }
     }
 }

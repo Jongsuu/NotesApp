@@ -1,2 +1,4 @@
-NotesAppAPI/[Bb]in/
-NotesAppAPI/[Oo]bj/
+NotesAppAPI/bin/*
+NotesAppAPI/obj/*
+NotesAppAPI/Debug/*
+NotesAppAPI/Release/*

@@ -68,9 +68,9 @@ namespace NotesAppAPI.Services.Authentication
             return response;
         }
 
-        public async Task<bool> UserExists(string username)
+        private async Task<bool> UserExists(string username)
         {
-            bool exists = false;
+            bool exists = true;
 
             try
             {
@@ -78,12 +78,12 @@ namespace NotesAppAPI.Services.Authentication
                 {
                     conn.Open();
 
-                    string query = string.Format("SELECT id FROM notes WHERE username = '{0}'", username);
+                    string query = string.Format("SELECT true FROM users WHERE LOWER(username) = LOWER('{0}');", username);
 
                     NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
-                    if (await cmd.ExecuteScalarAsync() != null)
-                        exists = true;
+                    object? result = await cmd.ExecuteScalarAsync();
+                    exists = result != null;
 
                     cmd.Dispose();
                     conn.Close();
@@ -91,7 +91,7 @@ namespace NotesAppAPI.Services.Authentication
             }
             catch (Exception)
             {
-                exists = false;
+                exists = true;
             }
 
             return exists;
@@ -196,17 +196,14 @@ namespace NotesAppAPI.Services.Authentication
                 {
                     conn.Open();
 
-                    string query = "call insertuser";
+                    string query = "SELECT public.insertuser(@user_name, @passwordHash, @passwordSalt)";
 
                     NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-                    cmd.Parameters.Add("@username", NpgsqlTypes.NpgsqlDbType.Varchar).Value = user.username;
+                    cmd.Parameters.Add("@user_name", NpgsqlTypes.NpgsqlDbType.Varchar, 50).Value = user.username;
                     cmd.Parameters.Add("@passwordHash", NpgsqlTypes.NpgsqlDbType.Bytea).Value = user.passwordHash;
                     cmd.Parameters.Add("@passwordSalt", NpgsqlTypes.NpgsqlDbType.Bytea).Value = user.passwordSalt;
-                    cmd.Parameters.Add("@userId", NpgsqlTypes.NpgsqlDbType.Integer).Direction = System.Data.ParameterDirection.Output;
 
-                    await cmd.ExecuteNonQueryAsync();
-
-                    userId = (int?)cmd.Parameters["@userId"].Value;
+                    userId = (int?)await cmd.ExecuteScalarAsync();
 
                     cmd.Dispose();
                     conn.Close();
@@ -217,9 +214,10 @@ namespace NotesAppAPI.Services.Authentication
                 else
                     response.data = userId;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Utils.SetResponseDBError<int?>(response);
+                System.Console.WriteLine(ex.Message);
             }
 
             return response;
