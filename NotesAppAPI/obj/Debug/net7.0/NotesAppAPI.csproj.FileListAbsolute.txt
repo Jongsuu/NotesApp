@@ -32,3 +32,10 @@
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/obj/Debug/net7.0/NotesAppAPI.genruntimeconfig.cache
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/obj/Debug/net7.0/ref/NotesAppAPI.dll
 /home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Npgsql.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/jongsu/Desktop/Projects/NotesApp/NotesAppAPI/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

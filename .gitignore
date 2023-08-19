@@ -1,2 +1,2 @@
-/NotesAppAPI/bin
-/NotesAppAPI/obj
+/NotesAppAPI/bin/*
+/NotesAppAPI/obj/*
